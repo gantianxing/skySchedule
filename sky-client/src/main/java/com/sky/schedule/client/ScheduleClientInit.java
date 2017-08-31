@@ -69,7 +69,7 @@ public class ScheduleClientInit {
 
         WRITE_WAIT_SECONDS = Integer.parseInt(env.getProperty("WRITE.WAIT.SECONDS"));
 
-        username=env.getProperty("user.name");
+        username=env.getProperty("sky.user.name");
 
         password=env.getProperty("password");
     }
