@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 @ChannelHandler.Sharable
 public class NettyServerHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
-    @Value("${user.name}")
+    @Value("${sky.user.name}")
     private String username;
 
     @Value("${password}")
