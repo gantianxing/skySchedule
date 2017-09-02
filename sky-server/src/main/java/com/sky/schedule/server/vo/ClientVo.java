@@ -11,7 +11,7 @@ public class ClientVo {
     private String id;
 
     /**
-     * 客户端分配的任务号
+     * 客户端分配的任务号（获取任务用）
      */
     private Integer nodeNum;
 
