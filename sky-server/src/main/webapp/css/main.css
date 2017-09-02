@@ -1,0 +1,49 @@
+
+.div{
+    font-size: 40px;
+    text-align:center
+}
+.group {
+    text-align: left;
+    border: 1px solid #dedede;
+    background: #efefef;
+    width: 660px;
+    padding: 20px;
+    margin: 100px auto;
+}
+
+form {
+  font:100% verdana;
+  min-width: 650px;
+  max-width: 650px;
+  width: 560px;
+}
+
+form fieldset {
+  border-color: #bdbebf;
+  border-width: 3px;
+  margin: 0;
+}
+
+legend {
+    font-size: 1.3em;
+}
+
+form label { 
+    width: 350px;
+    display: block;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+#buttons {
+    text-align: right;
+}
+#errors, li {
+	color: red;
+}
+.error {
+    color: red;
+    font-size: 9pt;	
+}

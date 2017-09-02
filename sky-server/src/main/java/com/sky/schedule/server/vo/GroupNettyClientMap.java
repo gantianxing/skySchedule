@@ -195,7 +195,7 @@ public class GroupNettyClientMap {
         //根据分组获取链接map
         Map<String,SocketChannel> channelMap = groupMap.get(groupId);
         Map tempMap = new ConcurrentHashMap<String, Integer>();
-        if(!CollectionUtils.isEmpty(channelMap)) {
+        if(channelMap != null) {
             synchronized(channelMap){//对每个分组map对象加锁，一个分组一次只允许一次重新计算
                 Set<String> clients = channelMap.keySet();
                 List<String> clientList = new ArrayList<String>(clients);
@@ -241,4 +241,26 @@ public class GroupNettyClientMap {
         return clientMap.size();
     }
 
+    /**
+     * 获取所有客户端信息
+     * @return
+     */
+    public static Map<Integer,List<ClientVo>> getAllClients() {
+
+        Map<Integer,List<ClientVo>> clientVoMap = new LinkedHashMap<>();
+
+        for(Integer group:groupClientMap.keySet()){
+            Map<String,Integer> oneMap = groupClientMap.get(group);
+            List<ClientVo> oneList = new LinkedList<>();
+            for(String id:oneMap.keySet()){
+                ClientVo clientVo = new ClientVo();
+                clientVo.setId(id);
+                clientVo.setNodeNum(oneMap.get(id));
+                oneList.add(clientVo);
+            }
+            clientVoMap.put(group,oneList);
+        }
+
+        return clientVoMap;
+    }
 }
