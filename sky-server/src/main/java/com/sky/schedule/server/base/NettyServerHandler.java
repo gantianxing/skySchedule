@@ -123,7 +123,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.error("连接异常，错误原因:" + cause.getMessage());
+
 
         StackTraceElement[] stackElements = cause.getStackTrace();//通过Throwable获得堆栈信息
         if (stackElements != null) {
@@ -136,6 +136,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
         //获取客户端id
         String clientid = GroupNettyClientMap.getClientId(ctx.channel());
+        log.error("连接异常，客户端信息:" + clientid);
         if(StringUtils.isNotBlank(clientid)){
             //channel失效，从Map中移除
             GroupNettyClientMap.remove(ctx.channel());
@@ -148,15 +149,16 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("Client active ");
+        log.info("新节点加入");
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.error("连接失效:");
+
         //获取客户端id
         String clientid = GroupNettyClientMap.getClientId(ctx.channel());
+        log.error("客户端:clientid出现故障,SkySchedule开始重新分配任务");
         if(StringUtils.isNotBlank(clientid)){
             //channel失效，从Map中移除
             GroupNettyClientMap.remove(ctx.channel());
